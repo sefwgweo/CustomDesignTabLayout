@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.customizeddesigntablayout.ui.TabViewModel" />
+
+        <import type="com.google.android.material.tabs.TabLayout" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar"
+            android:layout_height="48dp"
+            android:layout_width="match_parent">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                app:layout_scrollFlags="scroll|enterAlways"
+                tools:navigationIcon="?homeAsUpIndicator">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent">
+
+                    <FrameLayout
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:id="@+id/menu_button"
+                        android:layout_alignParentTop="true"
+                        android:layout_height="48dp"
+                        android:layout_width="48dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:background="@null"
+                            android:duplicateParentState="true"
+                            android:id="@+id/menu_button_icon"
+                            android:layout_gravity="center"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/ic_launcher_foreground"
+                            app:tint="@color/white"
+                            tools:ignore="ContentDescription,RtlHardcoded" />
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:id="@+id/title_container"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:id="@+id/logo_image"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:scaleType="centerInside"
+                            android:visibility="visible"
+                            tools:ignore="ContentDescription,RtlHardcoded" />
+
+                    </FrameLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.appcompat.widget.Toolbar>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <com.google.android.material.tabs.TabLayout
+                style="@style/MyTabLayout"
+                android:id="@+id/tab_layout"
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tabGravity="fill"
+                app:tabMode="@{viewModel.needScrollable() ? TabLayout.MODE_SCROLLABLE : TabLayout.MODE_FIXED}"
+                app:tabMaxWidth="0dp" />
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/pager"
+                android:layout_height="0dp"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tab_layout" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>
